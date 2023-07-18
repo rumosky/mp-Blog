@@ -1,0 +1,4 @@
+<!-- back-to-top.wxml -->
+<view class="back-to-top" wx:if="{{showBackToTop}}" bind:tap="handleBackToTop">
+  <image class="back-to-top-icon" src="/assets/img/back-to-top.png"></image>
+</view>

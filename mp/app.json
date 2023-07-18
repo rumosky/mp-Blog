@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/articleDetail/index",
+    "pages/category/index",
+    "pages/archives/index",
+    "pages/about/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "如默星空",
+    "navigationBarTextStyle": "black",
+    "visualEffectInBackground": "hidden"
+  },
+  "tabBar": {
+    "custom": true,
+    "selectedColor": "#56b6c2",
+    "color": "#555555",
+    "list": [
+      {
+        "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/category/index"
+      },
+      {
+        "pagePath": "pages/archives/index"
+      },
+      {
+        "pagePath": "pages/about/index"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "mp-html": "mp-html",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-empty": "@vant/weapp/empty/index"
+  },
+  "lazyCodeLoading": "requiredComponents"
+}

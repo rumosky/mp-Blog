@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<view class="container">
+  <van-row gutter="20">
+    <van-col span="24">
+      <view id="logo">
+        <van-image width="500rpx" height="140rpx" src="/assets/img/logo_left.svg" />
+      </view>
+    </van-col>
+    <van-col span="24">
+      <van-sticky>
+        <van-search value="{{ searchText }}" bind:search="onSearch" shape="round" maxlength="30" input-align="center"
+          placeholder="请输入搜索关键词" />
+      </van-sticky>
+    </van-col>
+    <van-col span="24" wx:for="{{ articleList }}" wx:key="index">
+      <view class="content">
+        <view class="content-title">
+          <h1>
+            <navigator url="/pages/articleDetail/index?cid={{ item.cid }}" hover-class="navigator-hover">
+              {{ item.title }}
+            </navigator>
+          </h1>
+
+        </view>
+        <view class="content-meta">
+          <text class="fa fa-calendar" /> {{ item.date.year }}-{{
+          item.date.month
+          }}-{{ item.date.day }} |
+          <text class="fa fa-folder" />
+          {{ item.categories[0].name }} |
+          <text class="fa fa-comment" />
+          {{ item.commentsNum }}
+        </view>
+        <view class="content-abstract">
+          <navigator url="/pages/articleDetail/index?cid={{ item.cid }}" hover-class="navigator-hover">
+            {{ item.fields.excerpt.value }}
+          </navigator>
+        </view>
+        <view class="content-readmore">
+          <navigator url="/pages/articleDetail/index?cid={{ item.cid }}" hover-class="navigator-hover">
+            <view class="readmore-button">
+              <class class="fa fa-thumbs-up" /> 阅读更多
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </van-col>
+    <van-col span="24">
+      <view class="footer">Copyright © {{ currentYear }} 如默星空</view>
+    </van-col>
+  </van-row>
+  <back-to-top scrollTop="{{scrollTop}}" bind:backToTop="handleBackToTop" />
+</view>

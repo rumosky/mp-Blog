@@ -1,0 +1,72 @@
+/**index.wxss**/
+.count {
+  text-align: center;
+  margin: 40rpx 30rpx;
+  font-size: 36rpx;
+}
+
+.content {
+  border-radius: 20rpx;
+  margin: 20rpx 30rpx;
+  box-shadow: 0 2rpx 4rpx 0 rgba(34, 36, 38, 0.15);
+  padding: 20rpx 20rpx;
+  border: 2rpx solid rgba(34, 36, 38, 0.15);
+  position: relative;
+}
+
+.content-title {
+  margin: 0;
+  color: #555;
+  text-align: left;
+  font: bold 40rpx/1.1 ff-tisa-web-pro, Cambria, "Times New Roman", Georgia,
+    Times, sans-serif;
+}
+
+.navigator-hover {
+  color: #4183c4;
+}
+
+.content-meta {
+  padding: 10rpx 6rpx;
+  margin: 0;
+  font-size: 30rpx;
+  color: #999999;
+  float: left;
+  display: inline;
+  overflow: hidden;
+}
+
+.content-abstract {
+  clear: left;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+  line-height: 1.77;
+  color: #444;
+  text-align: justify;
+  text-justify: auto;
+  word-break: break-all;
+}
+
+.content-readmore {
+  height: 50rpx;
+  position: relative;
+}
+
+.readmore-button {
+  position: absolute;
+  right: 0;
+  font-size: 28rpx;
+  color: #444;
+  border: 2rpx solid #ddd;
+  border-radius: 10rpx;
+  padding: 10rpx 20rpx;
+}
+
+.footer {
+  padding: 20rpx 20rpx 70rpx 20rpx;
+  margin-bottom: 100rpx;
+  font-size: 32rpx;
+  line-height: 2.5;
+  color: #6e7173;
+  text-align: center;
+}

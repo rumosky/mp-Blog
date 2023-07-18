@@ -1,0 +1,75 @@
+/**index.wxss**/
+
+#logo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40rpx 0;
+  text-align: left;
+  position: relative;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 20rpx 26rpx -20rpx rgba(0, 0, 0, .75);
+}
+
+.name {
+  font-size: x-large;
+  font-weight: 700;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+
+.motto {
+  margin: 20rpx 0;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.motto .fa {
+  font-size: 24rpx;
+  color: #555;
+}
+
+.contact {
+  margin-top: 20rpx;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center
+}
+
+.contact-item .fa {
+  color: #555;
+  font-size: 40rpx;
+  padding: 30rpx 40rpx;
+}
+
+.content-title {
+  margin: 0;
+  color: #555;
+  text-align: left;
+  font: bold 40rpx/1.1 ff-tisa-web-pro, Cambria, "Times New Roman", Georgia, Times, sans-serif;
+}
+
+.footer {
+  padding: 20rpx 20rpx 70rpx 20rpx;
+  font-size: 32rpx;
+  line-height: 2.5;
+  color: #6e7173;
+  text-align: center;
+  margin-bottom: 100rpx;
+}

@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="container">
+  <van-row gutter="20">
+    <van-col span="24">
+      <view id="logo">
+        <van-image round lazy-load width="200rpx" height="200rpx" src="/assets/img/avast.jpg" />
+      </view>
+    </van-col>
+    <van-col span="24">
+      <view class="about">
+        <view class="name">如默</view>
+        <view class="motto">
+          <text class="fa fa-quote-left"></text>
+          诚者，天之道也；诚之者，人之道也。
+          <text class="fa fa-quote-right"></text>
+        </view>
+        <view class="contact">
+          <view class="contact-item">
+            <text class="fa fa-qq" data-text="774026486" bindtap="copyText" />
+            <text class="fa fa-weixin" data-text="如默星空" bindtap="copyText" />
+            <text class="fa fa-github" data-text="https://github.com/rumosky" bindtap="copyText" />
+            <text class="fa fa-envelope" data-text="support@rumosky.com" bindtap="copyText" />
+            <text class="fa fa-safari" data-text="https://rumosky.com" bindtap="copyText" />
+          </view>
+        </view>
+      </view>
+
+    </van-col>
+    <van-col span="24" wx:for="{{pageList}}" wx:key="index">
+      <van-cell-group inset>
+        <van-cell is-link link-type="navigateTo" title="{{item.title}}"
+          url="/pages/articleDetail/index?cid={{ item.cid }}" />
+      </van-cell-group>
+    </van-col>
+    <van-col span="24">
+      <view class="footer">Copyright © {{currentYear}} 如默星空</view>
+    </van-col>
+  </van-row>
+  <back-to-top scrollTop="{{scrollTop}}" bind:backToTop="handleBackToTop" />
+</view>

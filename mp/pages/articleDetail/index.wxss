@@ -1,0 +1,123 @@
+/**index.wxss**/
+
+.content {
+  margin: 40rpx 30rpx;
+  padding: 20rpx 20rpx;
+  position: relative;
+}
+
+.content-title {
+  margin: 0;
+  color: #555;
+  text-align: left;
+  font: bold 40rpx/1.1 ff-tisa-web-pro, Cambria, "Times New Roman", Georgia,
+    Times, sans-serif;
+}
+
+.content-meta {
+  padding: 10rpx 6rpx;
+  margin: 0;
+  font-size: 30rpx;
+  color: #999999;
+  float: left;
+  display: inline;
+  overflow: hidden;
+}
+
+.content-text {
+  margin-top: 50rpx;
+  clear: left;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+  line-height: 1.77;
+  color: #444;
+  text-align: justify;
+  text-justify: auto;
+  word-break: break-all;
+}
+
+.comments {
+  margin: 40rpx 30rpx;
+  padding: 20rpx 20rpx;
+}
+
+.comments-title {
+  font-size: 32rpx;
+  font-family: Lato, system-ui, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+}
+
+.comments-content {
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  margin: 1rem 0;
+  padding: 1em 1em;
+  border-radius: .28571429rem;
+  border: 1px solid rgba(34, 36, 38, .15);
+}
+
+.comments-meta {
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+  color: #555;
+}
+
+.comments-text {
+  font-size: 24rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+  background-color: #F7F7F7;
+  border-radius: 10rpx;
+  color: #4f4f4f;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: keep-all;
+}
+
+.comments-children-content {
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  margin: 1rem 0;
+  padding: 1em 1em;
+  border-radius: .28571429rem;
+  border: 1px solid rgba(34, 36, 38, .15);
+}
+
+#reply {
+  color: #555;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+
+.comments-children-meta {
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+  color: #555;
+}
+
+.comments-children-text {
+  font-size: 24rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+  background-color: #F7F7F7;
+  border-radius: 10rpx;
+  color: #4f4f4f;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: keep-all;
+}
+
+.comments-empty {
+  margin: 0;
+}
+
+.footer {
+  padding: 20rpx 20rpx 70rpx 20rpx;
+  margin-bottom: 100rpx;
+  font-size: 32rpx;
+  line-height: 2.5;
+  color: #6e7173;
+  text-align: center;
+}

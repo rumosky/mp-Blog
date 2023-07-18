@@ -1,0 +1,19 @@
+/**app.wxss**/
+@import "assets/fontawesome4.7/fontawesome.wxss";
+@import "assets/fontawesome4.7/stylesheet.wxss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  padding: 0 10rpx 20rpx 10rpx;
+  margin: 0;
+  height: 100vh;
+}
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+}

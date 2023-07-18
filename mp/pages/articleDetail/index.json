@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "custom-tab-bar": "/custom-tab-bar/index",
+    "back-to-top": "/back-to-top/index"
+  }
+}

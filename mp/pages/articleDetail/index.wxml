@@ -1,0 +1,61 @@
+<!--index.wxml-->
+<view class="container">
+  <van-row gutter="20">
+    <van-col span="24">
+      <view class="content">
+        <view class="content-title">
+          <h1>{{ articleDetail.title }}</h1>
+        </view>
+        <view class="content-meta">
+          <text class="fa fa-calendar" /> {{ articleDetail.date.year }}-{{
+          articleDetail.date.month
+          }}-{{ articleDetail.date.day }} |
+          <text class="fa fa-folder-open" />
+          {{ articleDetail.categories[0].name }} |
+          <text class="fa fa-thermometer-full" />
+          热度
+          {{ articleDetail.fields.Hot.value }}℃ |
+          <text class="fa fa-eye" /> {{articleDetail.fields.views.value}}
+        </view>
+        <view class="content-text">
+          <mp-html scroll-table="true" content="{{ articleDetail.text }}" />
+        </view>
+      </view>
+    </van-col>
+    <van-col span="24">
+      <view class="comments">
+        <view class="comments-title">
+          <text class="fa fa-comments" />
+          评论区（{{articleDetail.commentsNum}}条评论）
+        </view>
+        <view class="comments-content" wx:if="{{ showComments }}">
+          <view class="comments-meta" wx:for="{{commentsDetail}}" wx:key="index">
+            <text class="fa fa-user" /> {{item.author}}
+            <text class="fa fa-clock-o" /> {{item.created}}
+            <view class="comments-text">
+              <mp-html scroll-table="true" content="{{item.text}}" />
+            </view>
+            <view class="comments-children-content" wx:for="{{item.children}}" wx:for-item="childrenItem" wx:key="index">
+              <view class="comments-children-meta">
+                <text id="reply"><text class="fa fa-mail-reply" /> {{item.author}}\n</text>
+                <text class="fa fa-user" /> {{childrenItem.author}}
+                <text class="fa fa-clock-o" /> {{childrenItem.created}}
+              </view>
+              <view class="comments-children-text">
+                <mp-html scroll-table="true" content="{{childrenItem.text}}" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="comments-empty" wx:else="{{showComments }}">
+          <van-empty description="暂无评论" />
+        </view>
+      </view>
+    </van-col>
+    <van-col span="24">
+      <view class="footer">Copyright © {{ currentYear }} 如默星空</view>
+    </van-col>
+  </van-row>
+  <back-to-top scrollTop="{{scrollTop}}" bind:backToTop="handleBackToTop" />
+  <custom-tab-bar />
+</view>

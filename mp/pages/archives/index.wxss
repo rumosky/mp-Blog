@@ -1,0 +1,122 @@
+/**index.wxss**/
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 40rpx 0 10rpx 0;
+  text-align: center;
+  font-size: 36rpx;
+}
+
+.title-count {
+  font-size: 28rpx;
+  color: #999999;
+  text-align: center;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 20rpx 30rpx;
+}
+
+.timeline-year {
+  padding: 0 0 40rpx 100rpx;
+  position: relative;
+}
+
+.timeline-year-wrap {
+  margin-bottom: 60rpx;
+  height: 50rpx;
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 65rpx;
+  top: 60rpx;
+  height: 100%;
+  width: 4rpx;
+  background-color: #000;
+}
+
+.timeline-year-rect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0rpx;
+  left: -64rpx;
+  height: 60rpx;
+  width: 60rpx;
+  background-color: #fff;
+}
+
+.timeline-year-icon {
+  background-color: #000;
+  height: 30rpx;
+  width: 30rpx;
+  transform: rotate(45deg);
+}
+
+.timeline-year-item {
+  margin-top: 8rpx;
+  text-align: center;
+  line-height: 50rpx;
+  height: 50rpx;
+  width: 120rpx;
+  color: white;
+  font-size: 24rpx;
+  background-color: black;
+  display: inline-block;
+  border-radius: 10rpx;
+}
+
+.timeline-month {
+  padding: 20rpx 0;
+}
+
+.timeline-month-item {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+  margin: 20rpx 0;
+  font-weight: 700;
+  padding: 0;
+}
+
+.timeline-day {
+  margin: 40rpx 0;
+}
+
+.timeline-day-item {
+  font-size: 12px;
+  font-weight: 350;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #768390;
+}
+
+.timeline-day-item-title {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.navigator-hover {
+  color: #4183c4;
+}
+
+.footer {
+  padding: 20rpx 20rpx 70rpx 20rpx;
+  margin-top: 80rpx;
+  margin-bottom: 170rpx;
+  font-size: 32rpx;
+  color: #6e7173;
+  text-align: center;
+}

@@ -1,0 +1,14 @@
+/* back-to-top.wxss */
+.back-to-top {
+  position: fixed;
+  right: 30rpx;
+  bottom: 220rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 100%;
+}
+
+.back-to-top-icon {
+  width: 60rpx;
+  height: 60rpx;
+}

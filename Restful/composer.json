@@ -1,0 +1,50 @@
+{
+    "name": "moefront/typecho-plugin-restful",
+    "type": "plugin",
+    "description":
+        "Yet another awesome Typecho plugin to make your blog RESTful.",
+    "license": "MIT",
+    "keywords": ["typecho", "typecho plugin"],
+    "homepage": "https://github.com/moefront/typecho-plugin-Restful",
+    "authors": [
+        {
+            "name": "kirainmoe",
+            "email": "i@kirainmoe.com"
+        },
+        {
+            "name": "kokororin",
+            "email": "i@kotori.love"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/moefront/typecho-plugin-Restful/issues",
+        "source": "https://github.com/moefront/typecho-plugin-Restful"
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "catfan/medoo": "~1.5",
+        "guiguiboy/php-cli-progress-bar": "^0.0.4",
+        "guzzlehttp/guzzle": "~6.0",
+        "phpunit/phpunit": "^6.0",
+        "squizlabs/php_codesniffer": "^3.2",
+        "ssx/php-serve": "^0.0.3"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MoeFront\\RestfulTests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": ["@phpunit", "@phpcbf", "@phpcs"],
+        "phpunit": "php vendor/bin/phpunit",
+        "phpcs": "php vendor/bin/phpcs -s",
+        "phpcbf": "php vendor/bin/phpcbf || true"
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    }
+}
