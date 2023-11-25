@@ -7,6 +7,8 @@ Page({
     pageSize: 10,
     articleList: [],
     hasMore: true,
+    count: 0,
+    showSearchResults: false,
     currentYear: app.globalData.currentYear,
     lastRequestTime: 0, // 最后一次发起请求的时间
     canRequest: true, // 是否可以发起新的请求
@@ -14,15 +16,15 @@ Page({
   onShareAppMessage: function () {
     // 设置分享的标题、路径和图片
     return {
-      title: "如默星空-首页",
-      path: "/pages/index/index",
+      title: "如默星空-搜索",
+      path: "/pages/search/index",
       // imageUrl: this.data.articleDetail.coverImage, // 设置分享图片，根据你的实际情况修改
     };
   },
   onShareTimeline: function () {
     // 设置分享到朋友圈的标题和路径
     return {
-      title: "如默星空-首页",
+      title: "如默星空-搜索",
       query: "",
     };
   },
@@ -36,16 +38,14 @@ Page({
   onSearch(event) {
     const keyword = event.detail;
     console.log(keyword, "搜索关键词");
-    wx.navigateTo({
-      url: `/pages/search/index?keyword=${encodeURIComponent(keyword)}`,
-    });
+    this.loadArticleList(keyword);
   },
   onClear() {
     this.setData({
       searchText: "",
     });
   },
-  loadArticleList() {
+  loadArticleList(keyword) {
     wx.showLoading({
       title: "加载中",
     });
@@ -66,17 +66,30 @@ Page({
         page: page,
         pageSize: pageSize,
         showContent: false,
+        filterType: "search",
+        filterSlug: keyword,
       },
       success: function (res) {
         if (res.statusCode === 200) {
           const data = res.data.data;
+          const count = data.count;
           const newArticleList = data.dataSet;
           that.setData({
             articleList: articleList.concat(newArticleList),
+            count: count,
             hasMore: newArticleList.length >= pageSize,
             showBottomTip: false, // 重置底部提示的显示状态
             lastRequestTime: currentTime, // 更新最后一次请求时间
           });
+          if (count != 0) {
+            that.setData({
+              showSearchResults: true,
+            });
+          } else {
+            that.setData({
+              showSearchResults: false,
+            });
+          }
         } else {
           console.error("请求失败");
           wx.showToast({
@@ -117,7 +130,7 @@ Page({
       articleList: [],
       hasMore: true,
     });
-    this.loadArticleList();
+    this.loadArticleList(this.data.searchText);
     wx.stopPullDownRefresh();
   },
 
@@ -141,7 +154,7 @@ Page({
       this.setData({
         page: nextPage,
       });
-      this.loadArticleList();
+      this.loadArticleList(this.data.searchText);
     } else {
       wx.showToast({
         title: `没有更多文章了`,
@@ -150,10 +163,11 @@ Page({
     }
   },
 
-  onLoad() {
-    this.loadArticleList();
-  },
-  onShow() {
-    this.getTabBar().setData({ active: "0" });
+  onLoad(options) {
+    const keyword = options.keyword ? decodeURIComponent(options.keyword) : "";
+    this.setData({
+      searchText: keyword,
+    });
+    this.loadArticleList(keyword);
   },
 });

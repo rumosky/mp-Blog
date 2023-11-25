@@ -2,7 +2,7 @@
 // 获取应用实例
 const app = getApp();
 // 缓存数据的键名
-const ARCHIVES_CACHE_KEY = 'archivesCache';
+const ARCHIVES_CACHE_KEY = "archivesCache";
 // 缓存过期时间（毫秒）
 const CACHE_EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // 七天
 
@@ -17,16 +17,16 @@ Page({
   onShareAppMessage: function () {
     // 设置分享的标题、路径和图片
     return {
-      title: '如默星空-归档',
-      path: '/pages/archives/index',
+      title: "如默星空-归档",
+      path: "/pages/archives/index",
       // imageUrl: this.data.articleDetail.coverImage, // 设置分享图片，根据你的实际情况修改
     };
   },
   onShareTimeline: function () {
     // 设置分享到朋友圈的标题和路径
     return {
-      title: '如默星空-归档',
-      query: '',
+      title: "如默星空-归档",
+      query: "",
     };
   },
   // 数据转换
@@ -53,7 +53,7 @@ Page({
         monthObj.dates.sort((a, b) => a.date - b.date);
         yearObj.months.push(monthObj);
       }
-      yearObj.months.sort((a, b) => a.month - b.month);
+      yearObj.months.sort((a, b) => b.month - a.month);
       formattedData.push(yearObj);
     }
     formattedData.sort((a, b) => b.year - a.year);
@@ -154,8 +154,8 @@ Page({
     }
     // 下拉刷新
     wx.showToast({
-      title: '刷新成功',
-      icon: 'success',
+      title: "刷新成功",
+      icon: "success",
     });
     wx.stopPullDownRefresh();
   },

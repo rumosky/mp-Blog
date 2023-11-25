@@ -8,7 +8,7 @@ App({
   },
 
   globalData: {
-    baseURL: "https://xxx",
+    baseURL: "https://rumosky.com/api",
     currentYear: null,
   },
 });
