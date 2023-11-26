@@ -10,19 +10,20 @@ Page({
     pageSize: 5,
     hasMore: true,
     commentsDetail: [],
+    emptyContentText: "暂无评论",
   },
   // 监听页面滚动事件
   onPageScroll(event) {
     const scrollTop = event.scrollTop;
     this.setData({
-      scrollTop: scrollTop
+      scrollTop: scrollTop,
     });
   },
   onShareAppMessage: function () {
     // 设置分享的标题、路径和图片
     return {
       title: this.data.articleDetail.title, // 使用文章标题作为分享标题
-      path: '/pages/articleDetail/index?cid=' + this.data.articleDetail.cid, // 设置分享路径，根据你的实际情况修改
+      path: "/pages/articleDetail/index?cid=" + this.data.articleDetail.cid, // 设置分享路径，根据你的实际情况修改
       // imageUrl: this.data.articleDetail.coverImage, // 设置分享图片，根据你的实际情况修改
     };
   },
@@ -30,9 +31,29 @@ Page({
     // 设置分享到朋友圈的标题和路径
     return {
       title: this.data.articleDetail.title, // 使用文章标题作为分享标题
-      query: 'cid=' + this.data.articleDetail.cid, // 设置分享路径参数，根据你的实际情况修改
+      query: "cid=" + this.data.articleDetail.cid, // 设置分享路径参数，根据你的实际情况修改
     };
   },
+  // 递归处理评论
+  flattenComments(comments, level, parentAuthor = null) {
+    let flattenedComments = [];
+    comments.forEach((comment) => {
+      comment.created = this.formatTimestamp(comment.created); // 添加这行代码
+      let newComment = { ...comment, level: level, parentAuthor: parentAuthor };
+      flattenedComments.push(newComment);
+      if (comment.children && comment.children.length > 0) {
+        let flattenedChildren = this.flattenComments(
+          comment.children,
+          level + 1,
+          comment.author
+        );
+        flattenedComments = flattenedComments.concat(flattenedChildren);
+      }
+    });
+    return flattenedComments;
+  },
+
+  // 加载文章评论数据
   loadArticleComments(cid) {
     wx.showLoading({
       title: "加载中",
@@ -50,6 +71,8 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           const data = res.data.data.dataSet;
+          const flattenedComments = that.flattenComments(data, 0);
+          // that.formatComments(data);
           // 将时间戳转换为时间
           data.forEach((comment) => {
             comment.created = that.formatTimestamp(comment.created);
@@ -57,9 +80,10 @@ Page({
               childComment.created = that.formatTimestamp(childComment.created);
             });
           });
-          // console.log(data,'datadata');
+          // console.log(data, "datadata");
           that.setData({
-            commentsDetail: that.data.commentsDetail.concat(data),
+            // commentsDetail: that.data.commentsDetail.concat(data),
+            commentsDetail: that.data.commentsDetail.concat(flattenedComments),
           });
           // 判断是否还有下一页评论
           const totalPages = that.data.totalPages;
@@ -73,6 +97,10 @@ Page({
           wx.showToast({
             title: "获取评论内容失败！",
             icon: "none",
+          });
+          that.setData({
+            showComments: false,
+            emptyContentText: "评论获取失败",
           });
         }
         wx.hideLoading();
@@ -105,7 +133,6 @@ Page({
           that.setData({
             articleDetail: data,
           });
-
           // 计算总页数
           const commentsNum = data.commentsNum;
           const pageSize = that.data.pageSize;
@@ -122,6 +149,7 @@ Page({
           } else {
             that.setData({
               showComments: false,
+              emptyContentText: "暂无评论",
             });
           }
         } else {
@@ -129,6 +157,10 @@ Page({
           wx.showToast({
             title: "获取文章内容失败！",
             icon: "none",
+          });
+          that.setData({
+            showComments: false,
+            emptyContentText: "评论获取失败",
           });
         }
         wx.hideLoading();

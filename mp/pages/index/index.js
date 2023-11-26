@@ -6,6 +6,8 @@ Page({
     page: 1,
     pageSize: 10,
     articleList: [],
+    showArticleList: false,
+    emptyContentText: "暂无内容",
     hasMore: true,
     currentYear: app.globalData.currentYear,
     lastRequestTime: 0, // 最后一次发起请求的时间
@@ -70,6 +72,7 @@ Page({
       success: function (res) {
         if (res.statusCode === 200) {
           const data = res.data.data;
+          const count = data.count;
           const newArticleList = data.dataSet;
           that.setData({
             articleList: articleList.concat(newArticleList),
@@ -77,11 +80,25 @@ Page({
             showBottomTip: false, // 重置底部提示的显示状态
             lastRequestTime: currentTime, // 更新最后一次请求时间
           });
+          if (count != 0) {
+            that.setData({
+              showArticleList: true,
+            });
+          } else {
+            that.setData({
+              showArticleList: false,
+              emptyContentText: "暂无内容",
+            });
+          }
         } else {
           console.error("请求失败");
           wx.showToast({
             title: "获取文章失败！",
             icon: "none",
+          });
+          that.setData({
+            showArticleList: false,
+            emptyContentText: "内容获取失败",
           });
         }
         wx.hideLoading();

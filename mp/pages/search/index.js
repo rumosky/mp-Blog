@@ -8,6 +8,7 @@ Page({
     articleList: [],
     hasMore: true,
     count: 0,
+    emptyContentText: "暂无内容",
     showSearchResults: false,
     currentYear: app.globalData.currentYear,
     lastRequestTime: 0, // 最后一次发起请求的时间
@@ -88,6 +89,7 @@ Page({
           } else {
             that.setData({
               showSearchResults: false,
+              emptyContentText: "暂无内容",
             });
           }
         } else {
@@ -95,6 +97,10 @@ Page({
           wx.showToast({
             title: "获取文章失败！",
             icon: "none",
+          });
+          that.setData({
+            showSearchResults: false,
+            emptyContentText: "内容获取失败",
           });
         }
         wx.hideLoading();

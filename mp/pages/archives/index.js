@@ -4,12 +4,14 @@ const app = getApp();
 // 缓存数据的键名
 const ARCHIVES_CACHE_KEY = "archivesCache";
 // 缓存过期时间（毫秒）
-const CACHE_EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // 七天
+const CACHE_EXPIRATION_TIME = 1 * 24 * 60 * 60 * 1000; // 一天
 
 Page({
   data: {
     archivesCount: 0,
     archivesList: [],
+    showArticleList: false,
+    emptyContentText: "暂无内容",
     currentYear: app.globalData.currentYear,
     lastRequestTime: 0, // 最后一次发起请求的时间
     canRequest: true, // 是否可以发起新的请求
@@ -74,6 +76,17 @@ Page({
           archivesList: transformedData,
           archivesCount: cachedData.count,
         });
+        // 更新 showArticleList 的值
+        if (cachedData.count != 0) {
+          this.setData({
+            showArticleList: true,
+          });
+        } else {
+          this.setData({
+            showArticleList: false,
+            emptyContentText: "暂无内容",
+          });
+        }
         return;
       }
     }
@@ -110,6 +123,10 @@ Page({
           wx.showToast({
             title: "获取归档列表失败！",
             icon: "none",
+          });
+          that.setData({
+            showArticleList: false,
+            emptyContentText: "内容获取失败",
           });
         }
         wx.hideLoading();

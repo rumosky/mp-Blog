@@ -1,29 +1,53 @@
 <!--index.wxml-->
 <view class="container">
-<view class="content">
-  <view class="title">文章归档</view>
-  <view class="title-count">⌊{{ archivesCount }}⌉ 篇</view>
-  <view class="timeline">
-    <view class="timeline-year" wx:for="{{archivesList}}" wx:key="index">
-      <view class="timeline-year-wrap">
-        <view class="timeline-year-rect">
-          <view class="timeline-year-icon"></view>
+  <view class="content">
+    <view class="title">文章归档</view>
+    <view class="title-count">⌊{{ archivesCount }}⌉ 篇</view>
+    <view>
+      <view wx:if="{{ showArticleList }}">
+        <view class="timeline">
+          <view
+            class="timeline-year"
+            wx:for="{{ archivesList }}"
+            wx:key="index"
+          >
+            <view class="timeline-year-wrap">
+              <view class="timeline-year-rect">
+                <view class="timeline-year-icon"></view>
+              </view>
+              <view class="timeline-year-item">{{ item.year }}年</view>
+            </view>
+            <view class="timeline-line"></view>
+            <view
+              class="timeline-month"
+              wx:for="{{ item.months }}"
+              wx:key="index"
+            >
+              <view class="timeline-month-item">{{ item.month }}月</view>
+              <view
+                class="timeline-day"
+                wx:for="{{ item.dates }}"
+                wx:key="index"
+              >
+                <view class="timeline-day-item">{{ item.date }}日</view>
+                <navigator
+                  url="/pages/articleDetail/index?cid={{ item.cid }}"
+                  hover-class="navigator-hover"
+                >
+                  <view class="timeline-day-item-title">{{ item.title }}</view>
+                </navigator>
+              </view>
+            </view>
+          </view>
         </view>
-        <view class="timeline-year-item">{{item.year}}年</view>
       </view>
-      <view class="timeline-line"></view>
-      <view class="timeline-month" wx:for="{{item.months}}" wx:key="index">
-        <view class="timeline-month-item">{{item.month}}月</view>
-        <view class="timeline-day" wx:for="{{item.dates}}" wx:key="index">
-          <view class="timeline-day-item">{{item.date}}日</view>
-          <navigator url="/pages/articleDetail/index?cid={{ item.cid }}" hover-class="navigator-hover">
-          <view class="timeline-day-item-title">{{item.title}}</view>
-        </navigator>
-        </view>
+      <view wx:else="{{ showArticleList }}">
+        <van-col span="24">
+          <van-empty description="{{ emptyContentText }}" />
+        </van-col>
       </view>
     </view>
+    <view class="footer">Copyright © {{ currentYear }} 如默星空</view>
   </view>
-  <view class="footer">Copyright © {{ currentYear }} 如默星空</view>
-</view>
-  <back-to-top scrollTop="{{scrollTop}}" bind:backToTop="handleBackToTop" />
+  <back-to-top scrollTop="{{ scrollTop }}" bind:backToTop="handleBackToTop" />
 </view>

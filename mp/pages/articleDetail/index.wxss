@@ -43,17 +43,20 @@
 
 .comments-title {
   font-size: 32rpx;
-  font-family: Lato, system-ui, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Lato, system-ui, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   font-weight: 700;
 }
 
 .comments-content {
   background: #fff;
-  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
   margin: 1rem 0;
   padding: 1em 1em;
-  border-radius: .28571429rem;
-  border: 1px solid rgba(34, 36, 38, .15);
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
 }
 
 .comments-meta {
@@ -67,7 +70,7 @@
   padding: 20rpx;
   margin-bottom: 20rpx;
   margin-top: 20rpx;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   border-radius: 10rpx;
   color: #4f4f4f;
   overflow: hidden;
@@ -77,11 +80,11 @@
 
 .comments-children-content {
   background: #fff;
-  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
   margin: 1rem 0;
   padding: 1em 1em;
-  border-radius: .28571429rem;
-  border: 1px solid rgba(34, 36, 38, .15);
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
 }
 
 #reply {
@@ -101,7 +104,7 @@
   padding: 20rpx;
   margin-bottom: 20rpx;
   margin-top: 20rpx;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   border-radius: 10rpx;
   color: #4f4f4f;
   overflow: hidden;

@@ -9,6 +9,8 @@ Page({
     hasMore: true,
     articleList: [],
     categoryList: [],
+    showArticleList: false,
+    emptyContentText: "暂无内容",
     currentTabCount: null,
     currentYear: app.globalData.currentYear,
     active: 0,
@@ -18,16 +20,16 @@ Page({
   onShareAppMessage: function () {
     // 设置分享的标题、路径和图片
     return {
-      title: '如默星空-分类',
-      path: '/pages/category/index',
+      title: "如默星空-分类",
+      path: "/pages/category/index",
       // imageUrl: this.data.articleDetail.coverImage, // 设置分享图片，根据你的实际情况修改
     };
   },
   onShareTimeline: function () {
     // 设置分享到朋友圈的标题和路径
     return {
-      title: '如默星空-分类',
-      query: '',
+      title: "如默星空-分类",
+      query: "",
     };
   },
 
@@ -35,22 +37,17 @@ Page({
   onPageScroll(event) {
     const scrollTop = event.scrollTop;
     this.setData({
-      scrollTop: scrollTop
+      scrollTop: scrollTop,
     });
   },
   loadArticleList(slug) {
     wx.showLoading({
-      title: '加载中',
+      title: "加载中",
     });
     const that = this;
     const url = app.globalData.baseURL + "/posts";
-    const {
-      page,
-      pageSize,
-      articleList,
-      lastRequestTime,
-      canRequest,
-    } = this.data;
+    const { page, pageSize, articleList, lastRequestTime, canRequest } =
+      this.data;
     // 时间限制判断
     const currentTime = Date.now();
     const timeInterval = 500; // 设定时间间隔，单位为毫秒
@@ -70,6 +67,7 @@ Page({
       success: function (res) {
         if (res.statusCode === 200) {
           const data = res.data.data;
+          const count = data.count;
           const newArticleList = data.dataSet;
           that.setData({
             articleList: articleList.concat(newArticleList),
@@ -77,11 +75,25 @@ Page({
             showBottomTip: false, // 重置底部提示的显示状态
             lastRequestTime: currentTime, // 更新最后一次请求时间
           });
+          if (count != 0) {
+            that.setData({
+              showArticleList: true,
+            });
+          } else {
+            that.setData({
+              showArticleList: false,
+              emptyContentText: "暂无内容",
+            });
+          }
         } else {
           console.error("请求失败");
           wx.showToast({
             title: "获取文章失败！",
             icon: "none",
+          });
+          that.setData({
+            showArticleList: false,
+            emptyContentText: "内容获取失败",
           });
         }
         wx.hideLoading();
@@ -114,10 +126,22 @@ Page({
           // 加载默认分类的文章列表
           that.loadArticleList(defaultSlug);
         } else {
+          const data = [
+            {
+              mid: 999,
+              name: "默认",
+              count: 0,
+            },
+          ];
           console.error("请求失败");
           wx.showToast({
             title: "获取分类失败！",
             icon: "none",
+          });
+          that.setData({
+            categoryList: data,
+            showArticleList: false,
+            emptyContentText: "内容获取失败",
           });
         }
       },

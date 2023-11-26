@@ -65,7 +65,7 @@
       </view>
       <view wx:else="{{ showSearchResults }}">
         <van-col span="24">
-          <van-empty description="暂无文章" />
+          <van-empty description="{{ emptyContentText }}" />
         </van-col>
       </view>
     </view>
