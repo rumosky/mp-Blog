@@ -282,8 +282,8 @@ Page({
   },
 
   onLoad(options) {
-    const cid = 1;
-    // const cid = options.cid;
+    // const cid = 1;
+    const cid = options.cid;
     this.loadArticleDetail(cid);
   },
 });
