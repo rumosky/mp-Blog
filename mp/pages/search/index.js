@@ -8,6 +8,7 @@ Page({
     articleList: [],
     hasMore: true,
     count: 0,
+    imgURL: "",
     emptyContentText: "暂无内容",
     showSearchResults: false,
     currentYear: app.globalData.currentYear,
@@ -90,6 +91,7 @@ Page({
             that.setData({
               showSearchResults: false,
               emptyContentText: "暂无内容",
+              imgURL: "/assets/img/empty-image-search.png",
             });
           }
         } else {
@@ -101,6 +103,7 @@ Page({
           that.setData({
             showSearchResults: false,
             emptyContentText: "内容获取失败",
+            imgURL: "/assets/img/empty-image-error.png",
           });
         }
         wx.hideLoading();

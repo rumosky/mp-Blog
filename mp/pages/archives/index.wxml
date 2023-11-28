@@ -43,7 +43,11 @@
       </view>
       <view wx:else="{{ showArticleList }}">
         <van-col span="24">
-          <van-empty description="{{ emptyContentText }}" />
+          <van-empty
+            class="custom-image"
+            image="{{ imgURL }}"
+            description="{{ emptyContentText }}"
+          />
         </van-col>
       </view>
     </view>

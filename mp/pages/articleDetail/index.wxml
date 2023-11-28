@@ -49,7 +49,11 @@
           </view>
         </view>
         <view class="comments-empty" wx:else="{{ showComments }}">
-          <van-empty description="{{ emptyContentText }}" />
+          <van-empty
+            class="custom-image"
+            image="{{ imgURL }}"
+            description="{{ emptyContentText }}"
+          />
         </view>
       </view>
     </van-col>
