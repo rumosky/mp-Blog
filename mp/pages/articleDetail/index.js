@@ -11,6 +11,7 @@ Page({
     hasMore: true,
     commentsDetail: [],
     imgURL: "",
+    imgURL: "",
     emptyContentText: "暂无评论",
   },
   // 监听页面滚动事件
@@ -100,6 +101,7 @@ Page({
             showComments: false,
             emptyContentText: "评论获取失败",
             imgURL: "/assets/img/empty-image-error.png",
+            imgURL: "/assets/img/empty-image-error.png",
           });
         }
         wx.hideLoading();
@@ -130,11 +132,13 @@ Page({
         if (res.statusCode === 200) {
           const data = res.data.data;
           // console.log(data, "articleDetail");
+          // console.log(data, "articleDetail");
           // 计算总页数
           const commentsNum = data.commentsNum;
           const pageSize = that.data.pageSize;
           const totalPages = Math.ceil(commentsNum / pageSize);
           that.setData({
+            articleDetail: data,
             articleDetail: data,
             totalPages: totalPages,
           });
@@ -147,6 +151,7 @@ Page({
             that.setData({
               showComments: false,
               emptyContentText: "暂无评论",
+              imgURL: "/assets/img/custom-empty-image.png",
               imgURL: "/assets/img/custom-empty-image.png",
             });
           }
@@ -182,8 +187,10 @@ Page({
 
           that.setData({
             articleDetail: defaultData,
+            articleDetail: defaultData,
             showComments: false,
             emptyContentText: "评论获取失败",
+            imgURL: "/assets/img/empty-image-error.png",
             imgURL: "/assets/img/empty-image-error.png",
           });
         }
