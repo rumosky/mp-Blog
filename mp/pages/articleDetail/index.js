@@ -10,6 +10,7 @@ Page({
     pageSize: 5,
     hasMore: true,
     commentsDetail: [],
+    imgURL: "",
     emptyContentText: "暂无评论",
   },
   // 监听页面滚动事件
@@ -72,7 +73,6 @@ Page({
         if (res.statusCode === 200) {
           const data = res.data.data.dataSet;
           const flattenedComments = that.flattenComments(data, 0);
-          // that.formatComments(data);
           // 将时间戳转换为时间
           data.forEach((comment) => {
             comment.created = that.formatTimestamp(comment.created);
@@ -80,9 +80,7 @@ Page({
               childComment.created = that.formatTimestamp(childComment.created);
             });
           });
-          // console.log(data, "datadata");
           that.setData({
-            // commentsDetail: that.data.commentsDetail.concat(data),
             commentsDetail: that.data.commentsDetail.concat(flattenedComments),
           });
           // 判断是否还有下一页评论
@@ -101,6 +99,7 @@ Page({
           that.setData({
             showComments: false,
             emptyContentText: "评论获取失败",
+            imgURL: "/assets/img/empty-image-error.png",
           });
         }
         wx.hideLoading();
@@ -130,17 +129,15 @@ Page({
       success: function (res) {
         if (res.statusCode === 200) {
           const data = res.data.data;
-          that.setData({
-            articleDetail: data,
-          });
+          // console.log(data, "articleDetail");
           // 计算总页数
           const commentsNum = data.commentsNum;
           const pageSize = that.data.pageSize;
           const totalPages = Math.ceil(commentsNum / pageSize);
           that.setData({
+            articleDetail: data,
             totalPages: totalPages,
           });
-
           if (data.commentsNum != 0) {
             that.loadArticleComments(that.data.articleDetail.cid);
             that.setData({
@@ -150,6 +147,7 @@ Page({
             that.setData({
               showComments: false,
               emptyContentText: "暂无评论",
+              imgURL: "/assets/img/custom-empty-image.png",
             });
           }
         } else {
@@ -158,9 +156,35 @@ Page({
             title: "获取文章内容失败！",
             icon: "none",
           });
+          const defaultData = {
+            title: "Oops，您访问的页面找不到了",
+            commentsNum: 0,
+            text: '<img src="https://cdn.rumosky.com/assets/mpblog/404.svg" alt="404" title="404">',
+            categories: [
+              {
+                name: "未知",
+              },
+            ],
+            date: {
+              year: "2018",
+              month: "04",
+              day: "01",
+            },
+            fields: {
+              Hot: {
+                value: "99",
+              },
+              views: {
+                value: "8888",
+              },
+            },
+          };
+
           that.setData({
+            articleDetail: defaultData,
             showComments: false,
             emptyContentText: "评论获取失败",
+            imgURL: "/assets/img/empty-image-error.png",
           });
         }
         wx.hideLoading();
@@ -171,6 +195,36 @@ Page({
         wx.showToast({
           title: "获取文章内容失败！",
           icon: "none",
+        });
+        const defaultData = {
+          title: "Oops，您访问的页面找不到了",
+          commentsNum: 0,
+          text: '<img src="https://cdn.rumosky.com/assets/mpblog/404.svg" alt="404" title="404">',
+          categories: [
+            {
+              name: "未知",
+            },
+          ],
+          date: {
+            year: "2018",
+            month: "04",
+            day: "01",
+          },
+          fields: {
+            Hot: {
+              value: "99",
+            },
+            views: {
+              value: "8888",
+            },
+          },
+        };
+
+        that.setData({
+          articleDetail: defaultData,
+          showComments: false,
+          emptyContentText: "评论获取失败",
+          imgURL: "/assets/img/empty-image-error.png",
         });
       },
     });
@@ -221,7 +275,8 @@ Page({
   },
 
   onLoad(options) {
-    const cid = options.cid;
+    const cid = 1;
+    // const cid = options.cid;
     this.loadArticleDetail(cid);
   },
 });

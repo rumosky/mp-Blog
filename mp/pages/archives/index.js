@@ -11,6 +11,7 @@ Page({
     archivesCount: 0,
     archivesList: [],
     showArticleList: false,
+    imgURL: "",
     emptyContentText: "暂无内容",
     currentYear: app.globalData.currentYear,
     lastRequestTime: 0, // 最后一次发起请求的时间
@@ -85,6 +86,7 @@ Page({
           this.setData({
             showArticleList: false,
             emptyContentText: "暂无内容",
+            imgURL: "/assets/img/custom-empty-image.png",
           });
         }
         return;
@@ -127,6 +129,7 @@ Page({
           that.setData({
             showArticleList: false,
             emptyContentText: "内容获取失败",
+            imgURL: "/assets/img/empty-image-error.png",
           });
         }
         wx.hideLoading();
